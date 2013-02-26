@@ -7,5 +7,8 @@
     <string name="launch_activity">Launch Activity:</string>
     <color name="string_color">#000000</color>
     <string name="packages">All packages:</string>
+    <string name="launch">Launch</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="view_activities">View Activities</string>
 
 </resources>

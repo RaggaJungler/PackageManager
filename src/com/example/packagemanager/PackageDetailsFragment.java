@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,16 +19,12 @@ import android.widget.Toast;
 
 public class PackageDetailsFragment extends Fragment {
 
+	private boolean mUninstalled = false;
+	
 	private final static String INDEX = "index";
 	private final static String PACKAGE_NAME = "packageName";
 	private final String LAUNCH_MESSAGE = "You can't start this application";
 	private final String NO_ACTIVITIES_MESSAGE = "This application has no activities";
-
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onActivityCreated(savedInstanceState);
-	}
 
 	public static PackageDetailsFragment newInstance(int index,
 			String packageName) {
@@ -39,6 +37,10 @@ public class PackageDetailsFragment extends Fragment {
 	}
 
 	public int getShownPosition() {
+		if (mUninstalled)
+		{
+			return -1;
+		}
 		return getArguments().getInt(INDEX, 0);
 	}
 
@@ -104,8 +106,18 @@ public class PackageDetailsFragment extends Fragment {
 			}
 		});
 
+		Button btnUninstall = (Button) tempView.findViewById(R.id.btnUninstall);
+		btnUninstall.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {	
+				mUninstalled = true;
+				Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
+				intent.setData(Uri.parse("package:" + packName));
+				startActivity(intent);
+			}
+		});
+
 		return tempView;
-
 	}
-
 }

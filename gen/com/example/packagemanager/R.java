@@ -25,18 +25,19 @@ public final class R {
         public static final int primary_normal=0x7f020008;
     }
     public static final class id {
-        public static final int btn=0x7f080008;
         public static final int btnLaunchPackage=0x7f080006;
+        public static final int btnUninstall=0x7f080008;
         public static final int btnViewAcrivities=0x7f080007;
         public static final int fragPackages=0x7f080002;
         public static final int ivIcon=0x7f080009;
         public static final int ivPackageIcon=0x7f080004;
         public static final int llPackageDetails=0x7f080003;
         public static final int lvActivities=0x7f080001;
-        public static final int menu_settings=0x7f08000b;
+        public static final int menu_settings=0x7f08000c;
         public static final int tvActivitiesList=0x7f080000;
         public static final int tvPackName=0x7f08000a;
         public static final int tvPackageName=0x7f080005;
+        public static final int viewPager=0x7f08000b;
     }
     public static final class layout {
         public static final int activity_item=0x7f030000;
@@ -44,16 +45,21 @@ public final class R {
         public static final int activity_main=0x7f030002;
         public static final int package_item_extended=0x7f030003;
         public static final int packageitem=0x7f030004;
+        public static final int view_pager=0x7f030005;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
+        public static final int activity_package_manager=0x7f070001;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
         public static final int hello_world=0x7f040001;
+        public static final int launch=0x7f040005;
         public static final int launch_activity=0x7f040003;
         public static final int menu_settings=0x7f040002;
         public static final int packages=0x7f040004;
+        public static final int uninstall=0x7f040006;
+        public static final int view_activities=0x7f040007;
     }
     public static final class style {
         /** 
