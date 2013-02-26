@@ -10,5 +10,6 @@
     <string name="launch">Launch</string>
     <string name="uninstall">Uninstall</string>
     <string name="view_activities">View Activities</string>
-
+    <color name="background_color">#370903</color>
+	<color name="text_color">#F0E68C</color>
 </resources>

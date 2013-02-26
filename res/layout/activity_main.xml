@@ -8,16 +8,15 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:layout_gravity="center_horizontal"     
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="@string/packages" />
-    
-    <fragment 
-        class="com.example.packagemanager.PackageFragment"
+
+    <fragment
         android:id="@+id/fragPackages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
-        
+        android:layout_weight="1"
+        class="com.example.packagemanager.PackageFragment" />
 
 </LinearLayout>

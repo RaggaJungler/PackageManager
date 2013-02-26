@@ -5,6 +5,7 @@ import java.util.List;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
@@ -29,7 +30,7 @@ public class PackageFragment extends ListFragment {
 		packages = getActivity().getPackageManager().getInstalledApplications(
 				PackageManager.GET_ACTIVITIES);
 		packagesAdapter = new PackagesAdapter(getActivity()
-				.getApplicationContext(), packages);
+				.getApplicationContext(), packages);		
 		setListAdapter(packagesAdapter);
 		if (savedInstanceState != null) {
 			mCurrentChoisePosition = savedInstanceState.getInt(CURRENT_CHOISE);
@@ -38,6 +39,12 @@ public class PackageFragment extends ListFragment {
 				R.id.llPackageDetails);
 		mDualPane = (packageDetailsFrame != null)
 				&& packageDetailsFrame.getVisibility() == View.VISIBLE;
+	}
+	
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		getListView().setCacheColorHint(Color.TRANSPARENT);
+		super.onViewCreated(view, savedInstanceState);
 	}
 
 	@Override

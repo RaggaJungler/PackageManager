@@ -11,18 +11,24 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
+        public static final int background_color=0x7f050001;
         public static final int string_color=0x7f050000;
+        public static final int text_color=0x7f050002;
     }
     public static final class drawable {
-        public static final int button_danger_selector=0x7f020000;
-        public static final int button_default_selector=0x7f020001;
-        public static final int button_info_selector=0x7f020002;
-        public static final int button_inverse_selector=0x7f020003;
-        public static final int button_primary_selector=0x7f020004;
-        public static final int button_success_selector=0x7f020005;
-        public static final int button_warning_selector=0x7f020006;
-        public static final int ic_launcher=0x7f020007;
-        public static final int primary_normal=0x7f020008;
+        public static final int btn=0x7f020000;
+        public static final int btn_focused=0x7f020001;
+        public static final int btn_normal=0x7f020002;
+        public static final int btn_pressed=0x7f020003;
+        public static final int button_danger_selector=0x7f020004;
+        public static final int button_default_selector=0x7f020005;
+        public static final int button_info_selector=0x7f020006;
+        public static final int button_inverse_selector=0x7f020007;
+        public static final int button_primary_selector=0x7f020008;
+        public static final int button_success_selector=0x7f020009;
+        public static final int button_warning_selector=0x7f02000a;
+        public static final int ic_launcher=0x7f02000b;
+        public static final int primary_normal=0x7f02000c;
     }
     public static final class id {
         public static final int btnLaunchPackage=0x7f080006;
@@ -88,5 +94,7 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f060001;
+        public static final int PackageManagerTheme=0x7f060003;
+        public static final int PackageManagerThemeButton=0x7f060002;
     }
 }

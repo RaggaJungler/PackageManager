@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -17,4 +17,13 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="PackageManagerThemeButton" parent="@android:style/Widget.Button">
+    	<item name="android:background">@drawable/btn</item>
+	</style>
+    
+    <style name="PackageManagerTheme" parent="@android:style/Theme.Black">
+        <item name="android:windowBackground">@color/background_color</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:buttonStyle">@style/PackageManagerThemeButton</item>        
+    </style>
 </resources>
