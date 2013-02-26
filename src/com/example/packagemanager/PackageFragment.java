@@ -9,17 +9,15 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 public class PackageFragment extends ListFragment {
 
 	private boolean mDualPane;
 	private int mCurrentChoisePosition = 0;
-	private PackagesAdapter packagesAdapter;
-	private List<ApplicationInfo> packages;
+	private PackagesAdapter mPackagesAdapter;
+	private List<ApplicationInfo> mPackages;
 
 	private final String CURRENT_CHOISE = "currentChoisePosition";
 	private final static String INDEX = "index";
@@ -27,11 +25,11 @@ public class PackageFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		packages = getActivity().getPackageManager().getInstalledApplications(
+		mPackages = getActivity().getPackageManager().getInstalledApplications(
 				PackageManager.GET_ACTIVITIES);
-		packagesAdapter = new PackagesAdapter(getActivity()
-				.getApplicationContext(), packages);		
-		setListAdapter(packagesAdapter);
+		mPackagesAdapter = new PackagesAdapter(getActivity()
+				.getApplicationContext(), mPackages);		
+		setListAdapter(mPackagesAdapter);
 		if (savedInstanceState != null) {
 			mCurrentChoisePosition = savedInstanceState.getInt(CURRENT_CHOISE);
 		}
@@ -61,35 +59,43 @@ public class PackageFragment extends ListFragment {
 	private void showPackageDetails(int position) {
 		mCurrentChoisePosition = position;
 		if (mDualPane) {
-			getListView().setItemChecked(position, true);
-			PackageDetailsFragment packageDetails = (PackageDetailsFragment) getFragmentManager()
-					.findFragmentById(R.id.llPackageDetails);
-			if (packageDetails == null
-					|| packageDetails.getShownPosition() != position) {				
-				packageDetails = PackageDetailsFragment.newInstance(position,
-						packagesAdapter.getAppInfo(position).packageName);
-			}
-			Log.d("pm", Boolean.toString(packageDetails.getShownPosition() != position));
-			FragmentTransaction fragTrans = getFragmentManager()
-					.beginTransaction();
-			fragTrans.replace(R.id.llPackageDetails, packageDetails);
-			fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-			fragTrans.commit();
+			setDetailsFragment(position);
 		} else {
-			Intent intent = new Intent();
-			intent.setClass(getActivity(), PackageDetailsActivity.class);
-			intent.putExtra(INDEX, position);
-			startActivity(intent);
+			startDetailsActivity(position);
 		}
-
+	}
+	
+	private void setDetailsFragment(int position)
+	{
+		getListView().setItemChecked(position, true);
+		PackageDetailsFragment packageDetails = (PackageDetailsFragment) getFragmentManager()
+				.findFragmentById(R.id.llPackageDetails);
+		if (packageDetails == null
+				|| packageDetails.getShownPosition() != position) {				
+			packageDetails = PackageDetailsFragment.newInstance(position,
+					mPackagesAdapter.getAppInfo(position).packageName);
+		}			
+		FragmentTransaction fragTrans = getFragmentManager()
+				.beginTransaction();
+		fragTrans.replace(R.id.llPackageDetails, packageDetails);
+		fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		fragTrans.commit();
+	}
+	
+	private void startDetailsActivity(int position)
+	{
+		Intent intent = new Intent();
+		intent.setClass(getActivity(), PackageDetailsActivity.class);
+		intent.putExtra(INDEX, position);
+		startActivity(intent);
 	}
 
 	@Override
 	public void onStart() {
-		packages.clear();
-		packages.addAll(getActivity().getPackageManager()
+		mPackages.clear();
+		mPackages.addAll(getActivity().getPackageManager()
 				.getInstalledApplications(PackageManager.GET_ACTIVITIES));
-		packagesAdapter.notifyDataSetChanged();	
+		mPackagesAdapter.notifyDataSetChanged();	
 		super.onStart();
 		if (mDualPane)
 		{

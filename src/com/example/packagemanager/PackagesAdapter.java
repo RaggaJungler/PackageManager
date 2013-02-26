@@ -51,7 +51,6 @@ public class PackagesAdapter extends BaseAdapter {
 		ViewHolder holder;
 		View view;
 		ApplicationInfo appInfo = getAppInfo(position);
-
 		PackageManager pm = mContext.getPackageManager();
 		if (convertView == null) {
 			view = mInflater.inflate(R.layout.packageitem, parent, false);
@@ -62,7 +61,6 @@ public class PackagesAdapter extends BaseAdapter {
 			view = convertView;
 			holder = (ViewHolder) view.getTag();
 		}
-
 		try {
 			holder.ivIcon.setImageDrawable(pm.getApplicationIcon(appInfo.packageName));
 		} catch (NameNotFoundException e) {

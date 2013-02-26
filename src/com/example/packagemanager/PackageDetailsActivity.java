@@ -3,7 +3,6 @@ package com.example.packagemanager;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.LauncherActivity.ListItem;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -20,7 +19,6 @@ public class PackageDetailsActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			finish();
 			return;

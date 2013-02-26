@@ -3,7 +3,6 @@ package com.example.packagemanager;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -15,28 +14,26 @@ import android.widget.TextView;
 
 public class ActivitiesList extends Activity {
 
-	final String packageName = "packageName";
+	final static String PACKAGE_NAME = "packageName";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		Intent intent = getIntent();
-		final String packName = intent.getStringExtra(packageName);
+		final String packName = intent.getStringExtra(PACKAGE_NAME);
 		setContentView(R.layout.activity_list);
 		TextView tvActList = (TextView) findViewById(R.id.tvActivitiesList);
 		tvActList.setText("Activities of " + packName + ": ");
 		ListView lvActivities = (ListView) findViewById(R.id.lvActivities);
-		Context context = this.getApplicationContext();
 		ActivityInfo[] activities = new ActivityInfo[0];
 		try {
-			activities = context.getPackageManager().getPackageInfo(packName,
-					PackageManager.GET_ACTIVITIES).activities;
+			activities = getApplicationContext().getPackageManager()
+					.getPackageInfo(packName, PackageManager.GET_ACTIVITIES).activities;
 		} catch (NameNotFoundException e) {
-			// DOing smthing
+			// Doing smthing
 		}
 		ArrayAdapter<String> activitiesAdapter = new ArrayAdapter<String>(
-				context, R.layout.activity_item,
+				getApplicationContext(), R.layout.activity_item,
 				activityInfoToString(activities));
 		lvActivities.setAdapter(activitiesAdapter);
 	}
