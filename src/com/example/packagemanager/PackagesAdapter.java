@@ -62,7 +62,8 @@ public class PackagesAdapter extends BaseAdapter {
 			holder = (ViewHolder) view.getTag();
 		}
 		try {
-			holder.ivIcon.setImageDrawable(pm.getApplicationIcon(appInfo.packageName));
+			holder.ivIcon.setImageDrawable(pm
+					.getApplicationIcon(appInfo.packageName));
 		} catch (NameNotFoundException e) {
 			holder.ivIcon.setImageDrawable(null);
 		}

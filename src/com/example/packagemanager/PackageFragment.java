@@ -28,7 +28,7 @@ public class PackageFragment extends ListFragment {
 		mPackages = getActivity().getPackageManager().getInstalledApplications(
 				PackageManager.GET_ACTIVITIES);
 		mPackagesAdapter = new PackagesAdapter(getActivity()
-				.getApplicationContext(), mPackages);		
+				.getApplicationContext(), mPackages);
 		setListAdapter(mPackagesAdapter);
 		if (savedInstanceState != null) {
 			mCurrentChoisePosition = savedInstanceState.getInt(CURRENT_CHOISE);
@@ -38,7 +38,7 @@ public class PackageFragment extends ListFragment {
 		mDualPane = (packageDetailsFrame != null)
 				&& packageDetailsFrame.getVisibility() == View.VISIBLE;
 	}
-	
+
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		getListView().setCacheColorHint(Color.TRANSPARENT);
@@ -64,26 +64,23 @@ public class PackageFragment extends ListFragment {
 			startDetailsActivity(position);
 		}
 	}
-	
-	private void setDetailsFragment(int position)
-	{
+
+	private void setDetailsFragment(int position) {
 		getListView().setItemChecked(position, true);
 		PackageDetailsFragment packageDetails = (PackageDetailsFragment) getFragmentManager()
 				.findFragmentById(R.id.llPackageDetails);
 		if (packageDetails == null
-				|| packageDetails.getShownPosition() != position) {				
+				|| packageDetails.getShownPosition() != position) {
 			packageDetails = PackageDetailsFragment.newInstance(position,
 					mPackagesAdapter.getAppInfo(position).packageName);
-		}			
-		FragmentTransaction fragTrans = getFragmentManager()
-				.beginTransaction();
+		}
+		FragmentTransaction fragTrans = getFragmentManager().beginTransaction();
 		fragTrans.replace(R.id.llPackageDetails, packageDetails);
 		fragTrans.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		fragTrans.commit();
 	}
-	
-	private void startDetailsActivity(int position)
-	{
+
+	private void startDetailsActivity(int position) {
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), PackageDetailsActivity.class);
 		intent.putExtra(INDEX, position);
@@ -95,10 +92,9 @@ public class PackageFragment extends ListFragment {
 		mPackages.clear();
 		mPackages.addAll(getActivity().getPackageManager()
 				.getInstalledApplications(PackageManager.GET_ACTIVITIES));
-		mPackagesAdapter.notifyDataSetChanged();	
+		mPackagesAdapter.notifyDataSetChanged();
 		super.onStart();
-		if (mDualPane)
-		{
+		if (mDualPane) {
 			showPackageDetails(mCurrentChoisePosition);
 		}
 	}
